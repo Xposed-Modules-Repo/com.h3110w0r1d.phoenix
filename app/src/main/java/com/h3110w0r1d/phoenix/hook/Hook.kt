@@ -61,7 +61,12 @@ class Hook : IXposedHookLoadPackage {
                 if (mState == null) {
                     // android-16_r4+
                     // https://cs.android.com/android/platform/superproject/+/android-16.0.0_r4:frameworks/base/services/core/java/com/android/server/am/psc/ProcessRecordInternal.java
-                    XposedHelpers.callMethod(processRecord, "setMaxAdj", maxAdj)
+                    try {
+                        XposedHelpers.callMethod(processRecord, "setMaxAdj", maxAdj)
+                    } catch (_: NoSuchMethodError) {
+                        // OneUI 8.5
+                        processRecord.set<Int>("mMaxAdj", maxAdj)
+                    }
                 } else {
                     // android 12~16_r3
                     // https://cs.android.com/android/platform/superproject/+/android-12.0.0_r1:frameworks/base/services/core/java/com/android/server/am/ProcessRecord.java

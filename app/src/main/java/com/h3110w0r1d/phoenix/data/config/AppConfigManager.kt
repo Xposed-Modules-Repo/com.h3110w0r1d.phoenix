@@ -25,6 +25,7 @@ private object ConfigKeys {
     val nightModeFollowSystem = booleanPreferencesKey("night_mode_follow_system")
     val nightModeEnabled = booleanPreferencesKey("night_mode_enabled")
     val pureBlackDarkTheme = booleanPreferencesKey("pure_black_dark_theme")
+    val showSystemApps = booleanPreferencesKey("show_system_apps")
     val warnBeforeEnableAll = booleanPreferencesKey("warn_before_enable_all")
     val warnBeforeEnablePersistent = booleanPreferencesKey("warn_before_enable_persistent")
     val warnBeforeEnableKeepActivity = booleanPreferencesKey("warn_before_enable_keep_activity")
@@ -44,6 +45,7 @@ class AppConfigManager(
                     nightModeFollowSystem = preferences[ConfigKeys.nightModeFollowSystem] ?: true,
                     nightModeEnabled = preferences[ConfigKeys.nightModeEnabled] ?: false,
                     pureBlackDarkTheme = preferences[ConfigKeys.pureBlackDarkTheme] ?: false,
+                    showSystemApps = preferences[ConfigKeys.showSystemApps] ?: false,
                     warnBeforeEnableAll = preferences[ConfigKeys.warnBeforeEnableAll] ?: true,
                     warnBeforeEnablePersistent = preferences[ConfigKeys.warnBeforeEnablePersistent] ?: true,
                     warnBeforeEnableKeepActivity = preferences[ConfigKeys.warnBeforeEnableKeepActivity] ?: true,
@@ -64,6 +66,7 @@ class AppConfigManager(
             preferences[ConfigKeys.nightModeFollowSystem] = appConfig.nightModeFollowSystem
             preferences[ConfigKeys.nightModeEnabled] = appConfig.nightModeEnabled
             preferences[ConfigKeys.pureBlackDarkTheme] = appConfig.pureBlackDarkTheme
+            preferences[ConfigKeys.showSystemApps] = appConfig.showSystemApps
             preferences[ConfigKeys.warnBeforeEnableAll] = appConfig.warnBeforeEnableAll
             preferences[ConfigKeys.warnBeforeEnablePersistent] = appConfig.warnBeforeEnablePersistent
             preferences[ConfigKeys.warnBeforeEnableKeepActivity] = appConfig.warnBeforeEnableKeepActivity

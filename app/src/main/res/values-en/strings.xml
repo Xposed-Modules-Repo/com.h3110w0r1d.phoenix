@@ -59,6 +59,7 @@
     <string name="keep_service_description">Experimental feature. Use with caution</string>
     <string name="enable_all">Enable All</string>
     <string name="disable_all">Disable All</string>
+    <string name="show_system_apps">Show system apps</string>
     <string name="enable_all_exclude_system_toast">All apps are enabled (excluding system apps)</string>
     <string name="disable_all_toast">All apps are disabled</string>
     <string name="continue_action">Continue</string>

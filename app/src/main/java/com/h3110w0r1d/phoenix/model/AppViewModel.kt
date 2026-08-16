@@ -3,7 +3,6 @@ package com.h3110w0r1d.phoenix.model
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.ViewModel
@@ -317,12 +316,22 @@ class AppViewModel
             }
             appInfo.sortWith(
                 Comparator { o1, o2 ->
-                    val o1Enabled = moduleConfig.appKeepAliveConfigs[o1.packageName]?.enabled ?: false
-                    val o2Enabled = moduleConfig.appKeepAliveConfigs[o2.packageName]?.enabled ?: false
+                    val o1Config = moduleConfig.appKeepAliveConfigs[o1.packageName]
+                    val o2Config = moduleConfig.appKeepAliveConfigs[o2.packageName]
+                    val o1Enabled = o1Config?.enabled ?: false
+                    val o2Enabled = o2Config?.enabled ?: false
                     if (o1Enabled && !o2Enabled) {
                         return@Comparator -1
                     }
                     if (!o1Enabled && o2Enabled) {
+                        return@Comparator 1
+                    }
+                    val o1HasCustomMaxAdj = o1Config?.maxAdj != null
+                    val o2HasCustomMaxAdj = o2Config?.maxAdj != null
+                    if (o1HasCustomMaxAdj && !o2HasCustomMaxAdj) {
+                        return@Comparator -1
+                    }
+                    if (!o1HasCustomMaxAdj && o2HasCustomMaxAdj) {
                         return@Comparator 1
                     }
                     return@Comparator o1.appName.compareTo(o2.appName, true)

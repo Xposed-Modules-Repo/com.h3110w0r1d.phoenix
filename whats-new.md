@@ -1,4 +1,4 @@
 ## 新增功能
 
-- 保活 Service (需目标应用 TargetApi < 34)
-- 优化 Activity 保活
+- 支持 One UI 8.5
+- 新增 "显示系统应用" 开关

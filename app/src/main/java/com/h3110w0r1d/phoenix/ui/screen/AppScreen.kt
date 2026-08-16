@@ -35,6 +35,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults.cardColors
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -95,6 +96,14 @@ fun AppScreen() {
     val appConfig = LocalGlobalAppConfig.current
     val apps by viewModel.searchAppList.collectAsState()
     val moduleConfig = appConfig.moduleConfig
+    val visibleApps =
+        remember(apps, appConfig.showSystemApps, moduleConfig.appKeepAliveConfigs) {
+            apps.filter { app ->
+                appConfig.showSystemApps ||
+                    !app.isSystemApp ||
+                    moduleConfig.appKeepAliveConfigs[app.packageName]?.enabled == true
+            }
+        }
     val isLoadingApps by viewModel.isLoadingApps.collectAsState()
     var searchText by remember { mutableStateOf("") }
     var isSearching by remember { mutableStateOf(false) }
@@ -225,6 +234,20 @@ fun AppScreen() {
                                 onDismissRequest = { isBatchMenuExpanded = false },
                             ) {
                                 DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.show_system_apps)) },
+                                    trailingIcon = {
+                                        Checkbox(
+                                            checked = appConfig.showSystemApps,
+                                            onCheckedChange = null,
+                                        )
+                                    },
+                                    onClick = {
+                                        viewModel.updateAppConfig(
+                                            appConfig.copy(showSystemApps = !appConfig.showSystemApps),
+                                        )
+                                    },
+                                )
+                                DropdownMenuItem(
                                     text = { Text(stringResource(R.string.enable_all)) },
                                     onClick = {
                                         isBatchMenuExpanded = false
@@ -265,17 +288,18 @@ fun AppScreen() {
                 contentPadding = PaddingValues(top = innerPadding.calculateTopPadding()),
             ) {
                 items(
-                    count = apps.size,
-                    key = { apps[it].packageName },
+                    count = visibleApps.size,
+                    key = { visibleApps[it].packageName },
                 ) { i ->
-                    val appName = apps[i].appName
-                    val packageName = apps[i].packageName
-                    val keepAliveConfig = moduleConfig.appKeepAliveConfigs[apps[i].packageName]
+                    val app = visibleApps[i]
+                    val appName = app.appName
+                    val packageName = app.packageName
+                    val keepAliveConfig = moduleConfig.appKeepAliveConfigs[packageName]
                     var isExpanded by remember { mutableStateOf(false) }
                     ListItem(
                         leadingContent = {
                             LazyAppIcon(
-                                appInfo = apps[i],
+                                appInfo = app,
                                 contentDescription = appName,
                                 modifier =
                                     Modifier
@@ -344,8 +368,8 @@ fun AppScreen() {
                             appConfig = appConfig,
                             packageName = packageName,
                             keepAliveConfig = keepAliveConfig,
-                            isPersistent = apps[i].isPersistent,
-                            targetApi = apps[i].targetApi,
+                            isPersistent = app.isPersistent,
+                            targetApi = app.targetApi,
                         )
                     }
                     DisposableEffect(packageName) {
