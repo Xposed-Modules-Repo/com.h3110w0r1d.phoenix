@@ -10,6 +10,8 @@
     <string name="module_activated">Module activated</string>
     <string name="module_inactivated">Module inactivated</string>
     <string name="please_restart_system">Please reboot your system for the module to take effect</string>
+    <string name="usage_tip_title">Usage tip</string>
+    <string name="usage_tip_message">Lowering the default MaxAdj is recommended for stronger keep-alive behavior, with -800 as the suggested value. We recommend enabling only a few apps that really need it. Alternatively, keep the default value at 0 and set a lower MaxAdj only for a few essential apps. If the expected effect is not achieved, join QQ group 1083682874 to discuss it with us.</string>
     <string name="lsposed_manager_not_install">LSPosed Manager is not installed</string>
     <string name="app_list">App List</string>
     <string name="enabled">Enabled</string>

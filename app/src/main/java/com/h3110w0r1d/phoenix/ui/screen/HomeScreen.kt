@@ -26,8 +26,10 @@ import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults.cardColors
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,6 +38,7 @@ import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.Typography
 import androidx.compose.material3.rememberTopAppBarState
@@ -44,6 +47,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -146,10 +150,47 @@ fun HomeScreen() {
             StatusCard()
         }
 
+        UsageTipDialog()
+
         if (showAboutDialog.value) {
             InfoDialog(onDismiss = { showAboutDialog.value = false })
         }
     }
+}
+
+@Composable
+fun UsageTipDialog() {
+    val viewModel = LocalGlobalViewModel.current
+    val appConfig by viewModel.appConfig.collectAsState()
+    var dismissed by remember { mutableStateOf(false) }
+    var dontRemindAgain by remember { mutableStateOf(false) }
+
+    if (!appConfig.isConfigInitialized || appConfig.hideUsageTip || dismissed) return
+
+    AlertDialog(
+        onDismissRequest = { dismissed = true },
+        title = { Text(stringResource(R.string.usage_tip_title)) },
+        text = {
+            Column {
+                Text(stringResource(R.string.usage_tip_message))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(
+                        checked = dontRemindAgain,
+                        onCheckedChange = { dontRemindAgain = it },
+                    )
+                    Text(stringResource(R.string.dont_remind_again))
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                if (dontRemindAgain) viewModel.setHideUsageTip(true)
+                dismissed = true
+            }) {
+                Text(stringResource(R.string.confirm))
+            }
+        },
+    )
 }
 
 @Composable

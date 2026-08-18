@@ -30,6 +30,7 @@ private object ConfigKeys {
     val warnBeforeEnablePersistent = booleanPreferencesKey("warn_before_enable_persistent")
     val warnBeforeEnableKeepActivity = booleanPreferencesKey("warn_before_enable_keep_activity")
     val warnBeforeEnableKeepService = booleanPreferencesKey("warn_before_enable_keep_service")
+    val hideUsageTip = booleanPreferencesKey("hide_usage_tip")
     val moduleConfig = stringPreferencesKey("module_config")
 }
 
@@ -50,6 +51,7 @@ class AppConfigManager(
                     warnBeforeEnablePersistent = preferences[ConfigKeys.warnBeforeEnablePersistent] ?: true,
                     warnBeforeEnableKeepActivity = preferences[ConfigKeys.warnBeforeEnableKeepActivity] ?: true,
                     warnBeforeEnableKeepService = preferences[ConfigKeys.warnBeforeEnableKeepService] ?: true,
+                    hideUsageTip = preferences[ConfigKeys.hideUsageTip] ?: false,
                     moduleConfig = Json.decodeFromString(preferences[ConfigKeys.moduleConfig] ?: "{}"),
                     isConfigInitialized = true,
                 )
@@ -71,6 +73,7 @@ class AppConfigManager(
             preferences[ConfigKeys.warnBeforeEnablePersistent] = appConfig.warnBeforeEnablePersistent
             preferences[ConfigKeys.warnBeforeEnableKeepActivity] = appConfig.warnBeforeEnableKeepActivity
             preferences[ConfigKeys.warnBeforeEnableKeepService] = appConfig.warnBeforeEnableKeepService
+            preferences[ConfigKeys.hideUsageTip] = appConfig.hideUsageTip
         }
     }
 

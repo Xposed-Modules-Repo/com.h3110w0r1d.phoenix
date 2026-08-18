@@ -9,6 +9,8 @@
     <string name="module_activated">模块已激活</string>
     <string name="module_inactivated">模块未激活</string>
     <string name="please_restart_system">请重启系统使模块生效</string>
+    <string name="usage_tip_title">使用建议</string>
+    <string name="usage_tip_message">建议调低默认 MaxAdj 以获得更强的保活效果，推荐设置为 -800。建议只开启少量确实需要保活的应用。也可以保留默认值 0，仅为少量必要应用单独设置较低的 MaxAdj。若未达到预期效果，欢迎加 QQ 群 1083682874 交流。</string>
     <string name="lsposed_manager_not_install">LSPosed 管理器未安装</string>
     <string name="app_list">应用列表</string>
     <string name="enabled">已启用</string>

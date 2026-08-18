@@ -122,6 +122,12 @@ class AppViewModel
             commitModuleConfig(newModuleConfig)
         }
 
+        fun setHideUsageTip(hide: Boolean) {
+            viewModelScope.launch {
+                configManager.updateAppConfig(appConfig.value.copy(hideUsageTip = hide))
+            }
+        }
+
         fun updateAppPersistent(
             packageName: String,
             persistent: Boolean,

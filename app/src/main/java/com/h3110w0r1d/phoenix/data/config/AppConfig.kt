@@ -14,6 +14,7 @@ data class AppConfig(
     val warnBeforeEnablePersistent: Boolean = true,
     val warnBeforeEnableKeepActivity: Boolean = true,
     val warnBeforeEnableKeepService: Boolean = true,
+    val hideUsageTip: Boolean = false,
     val isConfigInitialized: Boolean = false,
     val moduleConfig: ModuleConfig = ModuleConfig(),
 )
