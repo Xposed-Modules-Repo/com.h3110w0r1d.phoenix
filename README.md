@@ -11,6 +11,8 @@
 
 ---
 
+[English](README.en.md)
+
 ## 项目简介
 
 基于 Xposed，Hook 系统框架的进程创建函数，修改进程的 MaxOomAdj 实现应用进程保活。
