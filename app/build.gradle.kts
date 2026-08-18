@@ -20,8 +20,8 @@ android {
         applicationId = "com.h3110w0r1d.phoenix"
         minSdk = 26
         targetSdk = 37
-        versionCode = 18
-        versionName = "0.3.3"
+        versionCode = 19
+        versionName = "0.3.4"
     }
 
     splits {
