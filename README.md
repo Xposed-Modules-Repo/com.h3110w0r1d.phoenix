@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./app/src/main/ic_launcher-round.png" alt="Phoenix" width="128" height="128">
-  <h1>不死鸟 (Phoenix)</h1>
+  <h1>不死鸟</h1>
 
 [![GitHub release](https://img.shields.io/github/v/release/h3110w0r1d-y/Phoenix)](https://github.com/h3110w0r1d-y/Phoenix/releases)
 [![CI/CD](https://github.com/h3110w0r1d-y/Phoenix/actions/workflows/release.yml/badge.svg)](https://github.com/h3110w0r1d-y/Phoenix/actions/workflows/release.yml)
@@ -11,7 +11,7 @@
 
 ---
 
-[English](README.en.md)
+简体中文 | [English](README.en.md)
 
 ## 项目简介
 
