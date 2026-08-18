@@ -45,12 +45,12 @@ tested on Android 15~16, so use it with caution on other versions.
 
 ## Language
 
-Simplified Chinese is the default language of the app: it is what Phoenix shows unless
-another available language matches the device. English is available as a translation.
+The app follows the system language. A device in Chinese shows the original Simplified
+Chinese text; every other language falls back to English, which is the default resource
+set.
 
-To read the app in English, use the per-app language preference of Android 13+:
-**Settings › Apps › Phoenix › Language**. On earlier versions the app follows the
-system language.
+To choose the language explicitly, use the per-app language preference of Android 13+:
+**Settings › Apps › Phoenix › Language**.
 
 ## Roadmap
 
