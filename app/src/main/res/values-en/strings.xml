@@ -83,4 +83,9 @@
     <string name="home_screen">Home</string>
     <string name="setting_screen">Setting</string>
     <string name="app_screen">App</string>
+    <string name="nothing_here">Nothing here</string>
+    <plurals name="click_count_toast">
+        <item quantity="one">Click %1$d time</item>
+        <item quantity="other">Click %1$d times</item>
+    </plurals>
 </resources>

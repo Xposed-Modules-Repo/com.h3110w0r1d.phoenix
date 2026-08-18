@@ -273,13 +273,22 @@ fun SettingScreen() {
                     }
                     lastTimeStamp = System.currentTimeMillis()
                     if (clickCount >= maxClickCount) {
-                        mToast = Toast.makeText(context, "啥都木有", Toast.LENGTH_SHORT)
+                        mToast =
+                            Toast.makeText(
+                                context,
+                                context.getString(R.string.nothing_here),
+                                Toast.LENGTH_SHORT,
+                            )
                         mToast?.show()
                     } else {
                         mToast =
                             Toast.makeText(
                                 context,
-                                "Click $clickCount times",
+                                context.resources.getQuantityString(
+                                    R.plurals.click_count_toast,
+                                    clickCount,
+                                    clickCount,
+                                ),
                                 Toast.LENGTH_SHORT,
                             )
                         mToast?.show()

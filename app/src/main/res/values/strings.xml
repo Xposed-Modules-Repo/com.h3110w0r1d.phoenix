@@ -83,4 +83,8 @@
     <string name="home_screen">主页</string>
     <string name="setting_screen">设置</string>
     <string name="app_screen">应用</string>
+    <string name="nothing_here">啥都木有</string>
+    <plurals name="click_count_toast">
+        <item quantity="other">Click %1$d times</item>
+    </plurals>
 </resources>
